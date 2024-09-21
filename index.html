@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Predictor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        body{
+            /* height: 100vh;
+            width: 100%; */
+            background-image: url("https://img.freepik.com/premium-photo/sunset-with-clouds-sunset-horizon_1169880-178604.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            /* background-color: rgba(0, 0, 0, 0.24); */
+        }
+        #heading{
+            font-family: "Baskervville SC", serif;
+            font-weight: 900;
+            font-size: 40px;
+            color: rgb(233, 232, 232);
+            text-shadow:2px 1px  rgb(177, 176, 176);
+        }
+        #inputValue{
+            font-weight: 500;
+        }
+        .searchbutton{
+            background-color: transparent;
+        }
+        .searchbutton:hover i{
+            color: black;
+        }
+        #inputValue{
+            text-transform: uppercase;
+        }
+        .weatherbox{
+            transition: height .6s ease;
+        }
+
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center" id="mainbody">
+    <div class="container-fluid" >
+        <h1 class="text-center d-flex justify-content-center pt-3" id="heading">Weather App</h1>
+        <div class="container mb-5">
+            <div class="row mt-5">
+                <div class="col-md-4"></div>
+                <div class="weatherbox col-md-4 border border-secondary shadow p-5 " style="background-color: rgba(13, 13, 22, 0.308); backdrop-filter: blur(10px); border-radius: 70px;">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-location-dot fa-2x me-2" style="color: #b9b8b8;"></i>
+                        <input  type="text"  placeholder="enter place name..." class="form-control w-75 me-4" style="font-family: Dancing Script, cursive, Times, serif; background-color: rgb(189, 189, 189);" id="inputValue">
+                        <button style="font-family: Dancing Script, cursive, Times, serif;" class="searchbutton btn btn-outline-secondary border px-3" onclick="search()"> <i class=" fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> </button>
+                    </div>
+                    <div id="result">
+
+                        <!-- <div class=" text-center mt-4 ">
+                            <h1 style="font-family: Dancing Script, cursive, Times, serif; font-weight: 600;color: aliceblue;">Kottayam</h1>
+                            <h2 style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;">India</h2>
+                            <img id="icon" src="${weather_icon}" class="w-25 mt-4" alt="">
+                            <h4 style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;">Rain</h4>
+                            <h2 style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;"> 20 °C</h2>
+                            <p style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;"> 09 September 2024  12:00 PM IST </h5>
+                                <hr style="color: aliceblue;">
+                        </div>
+    
+                        <div class="row d-flex text-center">
+                            <div class="col-4 p-2  ">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-50" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">86 %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">Humidity</h6>
+                                    </div>     
+                            </div>
+                            <div class="col-4 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-50" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">86 %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">Humidity</h6>
+                                    </div>     
+                            </div>
+                            <div class="col-4 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-50" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">86 %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">Humidity</h6>
+                                    </div>     
+                            </div>
+                        </div>
+                        <div class="row d-flex text-center">
+                            <div class="col-4 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-50" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">86 %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">Humidity</h6>
+                                    </div>     
+                            </div>
+                            <div class="col-4 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-50" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">86 %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">Humidity</h6>
+                                    </div>     
+                            </div>
+                            <div class="col-4 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-50" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">86 %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(164, 170, 170);font-family: Dancing Script, cursive, Times, serif;">Humidity</h6>
+                                    </div>     
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    async function search(){
+        // console.log(inputValue.value);
+        if(inputValue.value){
+          const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${(inputValue.value).trim()}&appid=5fe36b192ffd1c36dffb6752bc1722b2`)
+        //   console.log(response);
+        response.json().then((data)=>{
+            console.log(data);
+            
+            const code = data.cod
+            if(data.cod== 404){
+                alert('Sorry ..! Place not found')
+            }
+
+            const mainitem = data.weather[0].main
+            if(data.weather[0].main == 'Rain'){
+                mainbody.style.backgroundImage = "url('https://www.icegif.com/wp-content/uploads/2021/10/icegif-453.gif'"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "white"
+            }
+            else if(data.weather[0].main == 'Clouds'){
+                mainbody.style.backgroundImage = "url('https://i.makeagif.com/media/8-08-2017/U8cAor.gif')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "white"
+            }
+            else if(data.weather[0].main == 'Sunny'){
+                mainbody.style.backgroundImage = "url('https://static.vecteezy.com/system/resources/previews/014/388/781/non_2x/beautiful-cosmos-flower-with-blue-sky-the-sunny-background-free-photo.jpg')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "white"
+            }
+            else if(data.weather[0].main == 'Clear'){
+                mainbody.style.backgroundImage = "url('https://i.gifer.com/embedded/download/1Unb.gif')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "white"
+            }
+            else if(data.weather[0].main == 'Mist'){
+                mainbody.style.backgroundImage = "url('https://i.makeagif.com/media/10-16-2018/rjxI8k.gif')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "white"
+            }
+            else if(data.weather[0].main == 'Haze'){
+                // mainbody.style.backgroundImage = "url('https://i.makeagif.com/media/10-16-2018/rjxI8k.gif')"
+                mainbody.style.backgroundImage = "url('https://media.zenfs.com/en/video.storyful.com/17f9e7cb821487c45e77b43f3e1e2377')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "black"
+            }
+            else if(data.weather[0].main == 'Snow'){
+                mainbody.style.backgroundImage = "url('https://64.media.tumblr.com/b67e6aea949be7ad1bcf18b5e497f231/599d6acdeb3ae959-b8/s640x960/41cee083e48f733ddb83ba68a7883ad643d3ea34.gif')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "black"
+            }
+            else {
+                mainbody.style.backgroundImage = "url('https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?cs=srgb&dl=pexels-pixabay-209831.jpg&fm=jpg')"
+            mainbody.style.backgroundRepeat = "no-repeat"
+            mainbody.style.backgroundSize = "cover"
+            mainbody.style.backgroundPosition = "center"
+            heading.style.color = "black"
+            }
+
+            console.log(mainitem);
+
+            const name = data.name
+            console.log(name);
+
+            let weather_icon= ''
+            // console.log(icon);
+            if(data.weather[0].main=="Clouds" ){
+             weather_icon= 'images/clouds_icon.webp'
+            
+        }
+        else if(data.weather[0].main=="Mist" ){
+            weather_icon= 'images/mist_icon.webp'
+            
+        }
+        else if(data.weather[0].main=="Clear" ){
+            weather_icon= 'images/clear_sky_icon.webp'
+           
+        }
+        else if(data.weather[0].main=="Rain" ){
+            weather_icon= 'images/rain_icon.webp'
+           
+        }
+        else if(data.weather[0].main=="Haze" ){
+            weather_icon= 'images/haze_icon.webp'
+        
+        }
+        else if(data.weather[0].main=="Snow" ) {
+            weather_icon= 'images/snow_icon.webp'
+           
+        }
+            
+            
+            // const temp = Math.floor(((data.main.temp)-32)*5/9)
+            const temp = Math.floor((data.main.temp)-273.15)
+            console.log(temp);
+
+            const hum = data.main.humidity
+            console.log(hum);
+
+            const feels = Math.floor((data.main.feels_like)-273.15)
+            console.log(feels);
+            
+            const country = data.sys.country
+            console.log(country);
+
+            let currentDate = new Date()
+            let year = currentDate.getFullYear()
+
+            let months = ["January", "February", "March", "April", "May", "June" , "July" , "August", "September", "October", "November", "December"]
+            let monthName = months[currentDate.getMonth()]
+
+            let date = currentDate.getDate() 
+            let hours = currentDate.getHours()
+            let minutes = currentDate.getMinutes()
+            // let sec = currentDate.getSeconds()
+            console.log(` ${date} ${monthName} ${year} ${hours}:${minutes} `);
+            
+            
+            const windSpeed = Math.floor(data.wind.speed)
+            console.log(windSpeed);
+            
+
+            const pressure = data.main.pressure
+            console.log(pressure);
+
+
+
+                result.innerHTML=`<div class=" text-center mt-4 ">
+                            <h1 style="font-family: Dancing Script, cursive, Times, serif; font-weight: 600;color: rgb(228, 227, 227);">${name}</h1>
+                            <h2 style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;">${country}</h2>
+                           <img  src="${weather_icon}" class="w-25 mt-4" alt="">
+                            <h4 style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;font-size:25px"">${mainitem}</h4>
+                            <h2 style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;font-size:40px">${temp} °C</h2>
+                            <p style="color: aliceblue;font-family: Dancing Script, cursive, Times, serif;font-size:16px"">${date} ${monthName} ${year} , ${hours}:${minutes} ${hours>=12 ? `PM` : `AM`}  IST </h5>
+                                <hr style="color: aliceblue;">
+                        </div>
+    
+                        <div class="row d-flex text-center">
+                            <div class="col-6 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/1000_F_304781665_WGgUVlAoqepgknMwo8WqMp1hCMYLo2pA-removebg-preview.png" class="w-25" alt="">
+                                    <h5 class="d-flex align-items-end" style="color:rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;">${hum}%</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color:rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;font-weight: bold;">Humidity</h6>
+                                    </div>     
+                            </div>
+                           
+                            <div class="col-6 p-2">
+                               <div class="d-flex">
+                                    <img src="./images/thermometer-icon-high-temperature-symbol-vector-6547358-removebg-preview.png" class="w-25" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;">${feels} %</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color:rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;font-weight: bold;">Feels-like</h6>
+                                    </div>    
+                            </div>
+                        </div>
+                        <div class="row d-flex text-center">
+                            <div class="col-6 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/png-transparent-atmospheric-pressure-computer-icons-gas-bar-pressure-miscellaneous-atmosphere-engineering-removebg-preview.png" class="w-25" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;">${pressure} mbar</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;font-weight: bold;">Pressure</h6>
+                                    </div>     
+                            </div>
+                            
+                            <div class="col-6 p-2">
+                                <div class="d-flex">
+                                    <img src="./images/pngtree-vector-wind-icon-png-image_884000-removebg-preview.png" class="w-25" alt="">
+                                    <h5 class="d-flex align-items-end" style="color: rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;">${windSpeed} km/h</h5>
+                                </div>
+                                    <div>
+                                        <h6 style="color: rgb(228, 227, 227);font-family: Dancing Script, cursive, Times, serif;font-weight: bold;">Wind-speed</h6>
+                                    </div>     
+                            </div>
+                        </div>`
+
+        })
+          
+    }
+        else{
+            alert(`Please enter a place name`)
+        }
+    }
+
+    
+</script>
+</html>
